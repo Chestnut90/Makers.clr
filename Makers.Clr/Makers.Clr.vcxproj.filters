@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{67630506-4112-4ffd-96ef-8b7ceb7702d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Conversions">
+      <UniqueIdentifier>{4c4b31d1-6028-4408-bce5-9c52bb1eb8d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Documents">
+      <UniqueIdentifier>{9e9c5ab0-1bd8-4d1f-82eb-935a0f91875a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Items">
+      <UniqueIdentifier>{f8e4b7b4-38f9-466c-b731-2b884a68fed1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Properties">
+      <UniqueIdentifier>{20fa710c-2a3b-446a-8eb4-7b29c73afc41}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="src\Conversions\Converter.h">
+      <Filter>src\Conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Documents\Document.h">
+      <Filter>src\Documents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Documents\DocumentIO.h">
+      <Filter>src\Documents</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Items\ItemFactory.h">
+      <Filter>src\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Properties\InputProperty.h">
+      <Filter>src\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Properties\OutputProperty.h">
+      <Filter>src\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Properties\PropertyBase.h">
+      <Filter>src\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Properties\StaticProperty.h">
+      <Filter>src\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Properties\PropertyGroup.h">
+      <Filter>src\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Items\ItemBase.h">
+      <Filter>src\Items</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="src\Conversions\Converter.cpp">
+      <Filter>src\Conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Documents\Document.cpp">
+      <Filter>src\Documents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Documents\DocumentIO.cpp">
+      <Filter>src\Documents</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Items\ItemFactory.cpp">
+      <Filter>src\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Properties\InputProperty.cpp">
+      <Filter>src\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Properties\OutputProperty.cpp">
+      <Filter>src\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Properties\PropertyBase.cpp">
+      <Filter>src\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Properties\StaticProperty.cpp">
+      <Filter>src\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Properties\PropertyGroup.cpp">
+      <Filter>src\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Items\ItemBase.cpp">
+      <Filter>src\Items</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
