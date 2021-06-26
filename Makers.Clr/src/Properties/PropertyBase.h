@@ -1,119 +1,79 @@
 #pragma once
 
-#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/PropertyBase.h"
-
-#include "../Items/ItemBase.h"
-#include "../Conversions/Converter.h"
-
-using PropertyBase_ = Makers::Properties::PropertyBase;
-using namespace Makers::Net::Items;
-
 namespace Makers
 {
+
+	namespace Properties { class PropertyBase; }
 	namespace Net
 	{
+		namespace Items { ref class ItemBase; }
 		namespace Properties
 		{
 			public ref class PropertyBase
 			{
 
-			//@ pure property base object
-			private: PropertyBase_* property_base_;
+			private: 
+				//@ pure property base object
+				Makers::Properties::PropertyBase* property_base_;
 
 #pragma region Properties
-			//@ ID
-			public: property System::String^ ID
-			{
-				System::String^ get()
-				{
-					return Conversion::ConvertString(property_base_->id());
-				}
-			}
+			public: 
 
-			//@ Name
-			public: property System::String^ Name
-			{
-				System::String^ get()
+				//@ ID
+				property System::String^ ID
 				{
-					return Conversion::ConvertString(property_base_->name());
+					System::String^ get();
 				}
-			}
 
-			//@ TODO : how to connection 
-			//@ OwnerItem
-			public: property ItemBase^ OwnerItem
-			{
-				Makers::Net::Items::ItemBase^ get()
+				//@ Name
+				property System::String^ Name
 				{
-					return nullptr;
+					System::String^ get();
 				}
-				private: void set(Makers::Net::Items::ItemBase^ item)
-				{
 
+				//@ TODO : how to connection 
+				//@ OwnerItem
+				property ItemBase^ OwnerItem
+				{
+					Makers::Net::Items::ItemBase^ get()
+					private: // TODO : is this syntax ok?
+						void set(Makers::Net::Items::ItemBase^ item);
 				}
-			}
 
 					// TODO : computable
 
-			// TODO : dll updated and connection
-			//@ IsOptional
-			public: property bool IsOptional
-			{
-				bool get()
+				// TODO : dll updated and connection
+				//@ IsOptional
+				property bool IsOptional
 				{
-					return false;
+					bool get();
 				}
-			}
 
-			//@ IsUsed
-			public: property bool IsUsed
-			{
-				bool get()
+				//@ IsUsed
+				property bool IsUsed
 				{
-					return property_base_->is_used_;
+					bool get();
+					void set(bool isUsed);
 				}
-				void set(bool isUsed)
-				{
-					property_base_->set_is_used(isUsed);
-				}
-			}
 #pragma endregion
 
 #pragma region ctors
-			//@ constructor
-			public: PropertyBase()
-			{
-				//property_base_ = new PropertyBase_();
-			}
+			public: 
 
-			//@ destructor
-			public: virtual ~PropertyBase()
-			{
-				delete property_base_;
-			}
+				//@ constructor
+				PropertyBase();
 
-			//@ finalizer
-			public: !PropertyBase()
-			{
+				//@ destructor
+				virtual ~PropertyBase();
 
-			}
+				//@ finalizer
+				!PropertyBase();
 #pragma endregion
 
-			//@ to data
-			public: virtual System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData()
-			{
-				auto data = gcnew System::Collections::Generic::Dictionary<System::String^, System::String^>();
-			
-				data["ID"] = ID;
-				data["Name"] = Name;
-				data["OwnerID"] = OwnerItem->ID;
-				data["IsOptional"] = IsOptional.ToString();
-				data["IsUsed"] = IsUsed.ToString();
-				data["DataType"] = "/TODO";
-				// TODO : data object info?
+			public: 
 
-				return data;
-			}
+				//@ to data
+				virtual System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData();
 
 			};
 		}

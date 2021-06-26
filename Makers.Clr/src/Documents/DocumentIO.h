@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Document.h"
 
 namespace Makers
 {
@@ -8,27 +7,21 @@ namespace Makers
 	{
 		namespace Documents
 		{
+			ref class Document;
 			ref class DocumentIO
 			{
-			public: static Document^ Load(System::String^ filePath)
-			{
-				return nullptr;
-			}
+			public: 
+				//@ load net document object
+				static Document^ Load(System::String^ filePath);
 
-			public: static Document_* _Load(std::string _file_path)
-			{
-				return nullptr;
-			}
+				//@ load cpp document object
+				static Document_* _Load(std::string _file_path);
 
-			public: static bool Save(Document^ document)
-			{
-				return true;
-			}
+				//@ save net document object
+				static bool Save(Document^ document);
 
-			public: static bool _Save(Document_& _document)
-			{
-				return true;
-			}
+				//@ save cpp document object
+				static bool _Save(Document_& _document);
 
 			};
 		}

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "PropertyBase.h"
-#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/OutputProperty.h"
 
 namespace Makers
 {
@@ -12,20 +11,13 @@ namespace Makers
 			public ref class OutputProperty :
 				public PropertyBase
 			{
-			public: OutputProperty() : PropertyBase()
-			{
 
-			}
+			public: 
+				OutputProperty();
 
-			public: ~OutputProperty()
-			{
+				~OutputProperty();
 
-			}
-
-			public: !OutputProperty()
-			{
-
-			}
+				!OutputProperty();
 
 			};
 		}

@@ -1,123 +1,81 @@
 #pragma once
 
-#include "../../../../Makers.Pure/Makers.Pure/Include/Items/ItemBase.h"
-
-// props
-#include "../Properties/PropertyGroup.h"
-
-#include "../Conversions/Converter.h"
-
-using ItemBase_ = Makers::Items::ItemBase;
-
 namespace Makers
 {
+	namespace Items { class ItemBase; }
 	namespace Net
 	{
 		namespace Items
 		{
 			public ref class ItemBase 
 			{
-			//@ pure item base object
-			private: ItemBase_* item_base_;
+
+			private: 
+				//@ pure item base object
+				Makers::Items::ItemBase* item_base_;
 					 
-			//@ ID
-			public: property System::String^ ID
-			{
-				System::String^ get()
+			public: 
+				//@ ID
+				property System::String^ ID
 				{
-					return Conversion::ConvertString(item_base_->id());
+					System::String^ get();
 				}
-			}
 
-			//@ Item Name
-			public: property System::String^ ItemName
-			{
-				System::String^ get()
+				//@ Item Name
+				property System::String^ ItemName
 				{
-					return Conversion::ConvertString(item_base_->item_name());
+					System::String^ get();
 				}
-			}
 
-			//@ Custom Name
-			public: property System::String^ CustomName
-			{
-				System::String^ get()
+				//@ Custom Name
+				property System::String^ CustomName
 				{
-					return Conversion::ConvertString(item_base_->custom_name());
+					System::String^ get();
+					void set(System::String^ _customName);
 				}
-				void set(System::String^ _customName)
+
+				//@ Last Computed Time
+				property System::Int64^ LastComputedTime
 				{
-					std::string custom_name;
-					Conversion::ConvertString(_customName, custom_name);
-					item_base_->set_custom_name(custom_name);
+					System::Int64^ get();
 				}
-			}
 
-			//@ Last Computed Time
-			public: property System::Int64^ LastComputedTime
-			{
-				System::Int64^ get()
+				//@ Input Properties
+				property Makers::Net::Properties::PropertyGroup^ InputProperties
 				{
-					return item_base_->last_computed_time();
+					Makers::Net::Properties::PropertyGroup^ get();
 				}
-			}
 
-			//@ Input Properties
-			public: property Makers::Net::Properties::PropertyGroup^ InputProperties
-			{
-				Makers::Net::Properties::PropertyGroup^ get()
+				//@ Static Properties
+				property Makers::Net::Properties::PropertyGroup^ StaticProperties
 				{
-					// TODO : how to change property group 
-
-					return nullptr;
+					Makers::Net::Properties::PropertyGroup^ get();
 				}
-			}
 
-			//@ Static Properties
-			public: property Makers::Net::Properties::PropertyGroup^ StaticProperties
-			{
-				Makers::Net::Properties::PropertyGroup^ get()
+				//@ Output Properties
+				property Makers::Net::Properties::PropertyGroup^ OutputProperties
 				{
-					// TODO : how to change property group 
-
-					return nullptr;
+					Makers::Net::Properties::PropertyGroup^ get();
 				}
-			}
 
-			//@ Output Properties
-			public: property Makers::Net::Properties::PropertyGroup^ OutputProperties
-			{
-				Makers::Net::Properties::PropertyGroup^ get()
-				{
-					// TODO : how to change property group 
-
-					return nullptr;
-				}
-			}
-
-			//@ internal constructor
-			//@ access from item factory
-			internal: ItemBase(ItemBase_* _item_base) 
-			{
-				item_base_ = _item_base;
-			}
-
-			public: ~ItemBase() 
-			{
-				// TODO : 
-			}
-
-			public: !ItemBase() 
-			{
-				// TODO :
-			}
 			
-			//@ internal function
-			//@ export pure object
-			internal: ItemBase_* Export()
-			{
-				return item_base_;
-			}
+			internal: 
+				//@ internal constructor
+				//@ access from item factory
+				ItemBase(ItemBase_* _item_base) ;
+
+			public: 
+				//@ destructor
+				~ItemBase();
+
+				//@ finalizer
+				!ItemBase();
+			
+			
+			internal: 
+				//@ internal function
+				//@ export pure object
+				Makers::Items::ItemBase* Export();
 
 			};
 		}

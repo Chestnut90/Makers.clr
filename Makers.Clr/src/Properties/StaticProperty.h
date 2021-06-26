@@ -1,7 +1,6 @@
 #pragma once
 
 #include "PropertyBase.h"
-#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/StaticProperty.h"
 
 namespace Makers
 {
@@ -13,24 +12,13 @@ namespace Makers
 				public PropertyBase
 			{
 
-			public: StaticProperty() : PropertyBase()
-			{
-
-			}
-
-			public: ~StaticProperty()
-			{
-
-			}
-
-			public: !StaticProperty()
-			{
-
-			}
+			public: 
+				StaticProperty();
+				~StaticProperty();
+				!StaticProperty();
 
 			public:
-
-			public:
+				// TODO : toData overriding
 
 			};
 		}

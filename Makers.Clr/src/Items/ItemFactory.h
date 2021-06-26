@@ -1,67 +1,41 @@
 #pragma once
 
-#include "ItemBase.h"
-#include "../../../../Makers.Pure/Makers.Pure/Include/Items/ItemFactory.h"
-#include "../Conversions/Converter.h"
-
-using ItemFactory_ = Makers::Items::ItemFactory;
-
 namespace Makers
 {
+	namespace Items { class ItemFactory; }
 	namespace Net
 	{
 		namespace Items
 		{
+			ref class ItemBase;
+
 			public ref class ItemFactory
 			{
 			
-			private: ItemFactory_* item_factory_;
+			private: 
+				//@ pure item factory instance
+				Makers::Items::ItemFactory* item_factory_;
 
-			//@ this factory instance
-			private: static ItemFactory^ instance_;
+				//@ this factory instance
+				static ItemFactory^ instance_;
 
-			public: static ItemFactory^ Instance()
-			{
-				if (instance_ == nullptr)
-				{
-					instance_ = gcnew ItemFactory();
-				}
+			public: 
+				//@ instance getter
+				static ItemFactory^ Instance();
 
-				return instance_;
-			}
+				//@ destroyer
+				static void Destory();
 
-			protected: ItemFactory()
-			{
-				item_factory_ = new ItemFactory_();
-			}
+			protected: 
+				//@ protected constructor
+				ItemFactory();
 
-			protected: ~ItemFactory()
-			{
-				delete item_factory_;
-			}
-					
-			public: static void Destory()
-			{
-				delete instance_;
-				instance_ = nullptr;
-			}
+				//@ protected destructor
+				~ItemFactory();
 
-			public: ItemBase^ Create(System::String^ itemName)
-			{
-				std::string a = "";
-				Conversion::ConvertString(itemName, a);
-				//a = Conversion::ConvertString(itemName);
-				std::cout << a << std::endl;
-
-				System::String^ net = Conversion::ConvertString(a);
-				System::Console::WriteLine(net);
-
-				std::string std_item_name;
-				Conversion::ConvertString(itemName, std_item_name);
-				auto item = item_factory_->Create(std_item_name);
-
-				return gcnew ItemBase(item);
-			}
+			public: 
+				//@ create item
+				ItemBase^ Create(System::String^ itemName);
 
 			};
 		}
