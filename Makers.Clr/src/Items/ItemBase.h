@@ -5,6 +5,7 @@ namespace Makers
 	namespace Items { class ItemBase; }
 	namespace Net
 	{
+		namespace Properties { ref class PropertyGroup; }
 		namespace Items
 		{
 			public ref class ItemBase 
@@ -13,8 +14,16 @@ namespace Makers
 			private: 
 				//@ pure item base object
 				Makers::Items::ItemBase* item_base_;
-					 
+				
+				//@ input properties
+				Makers::Net::Properties::PropertyGroup^ inputProperties = nullptr;
+				//@ static properties
+				Makers::Net::Properties::PropertyGroup^ staticProperties = nullptr;
+				//@ output properties
+				Makers::Net::Properties::PropertyGroup^ outputProperties = nullptr;
+
 			public: 
+
 				//@ ID
 				property System::String^ ID
 				{
@@ -31,7 +40,7 @@ namespace Makers
 				property System::String^ CustomName
 				{
 					System::String^ get();
-					void set(System::String^ _customName);
+					void set(System::String^ customName);
 				}
 
 				//@ Last Computed Time
@@ -39,7 +48,7 @@ namespace Makers
 				{
 					System::Int64^ get();
 				}
-
+				
 				//@ Input Properties
 				property Makers::Net::Properties::PropertyGroup^ InputProperties
 				{
@@ -51,7 +60,7 @@ namespace Makers
 				{
 					Makers::Net::Properties::PropertyGroup^ get();
 				}
-
+				
 				//@ Output Properties
 				property Makers::Net::Properties::PropertyGroup^ OutputProperties
 				{
@@ -62,12 +71,13 @@ namespace Makers
 			internal: 
 				//@ internal constructor
 				//@ access from item factory
-				ItemBase(ItemBase_* _item_base) ;
+				ItemBase(Makers::Items::ItemBase& _item_base);
 
-			public: 
 				//@ destructor
 				~ItemBase();
 
+			public:
+				//@ TODO : 
 				//@ finalizer
 				!ItemBase();
 			

@@ -4,6 +4,7 @@
 
 namespace Makers
 {
+	namespace Properties { class InputProperty; }
 	namespace Net
 	{
 		namespace Properties
@@ -12,17 +13,26 @@ namespace Makers
 				public PropertyBase
 			{
 			public: 
-
 				//@ connected property
 				property PropertyBase^ ConnectedProperty;
 
 			public: 
-				InputProperty();
+				//@ constructor
+				InputProperty(
+					Makers::Net::Items::ItemBase^ ownerItem, 
+					Makers::Properties::InputProperty& inputProperty);
+				//@ destructor
 				~InputProperty();
+				//@ finalizer
 				!InputProperty();
 
 			public: 
+				//@ to data
 				System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData() override;
+
+				//@ export pure data
+				//Makers::Properties::PropertyBase* Export() override;
+
 			};
 		}
 	}

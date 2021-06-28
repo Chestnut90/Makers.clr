@@ -10,10 +10,15 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            var factory = Makers.Net.Items.ItemFactory.Instance();
+            //var factory = Makers.Net.Items.ItemFactory.Instance();
 
-            Documents.DocumentTest.Test_Document();
+            //Documents.DocumentTest.Test_Document();
 
+            //Test.Items.ItemsTest.Test_ItemBase();
+
+            Test.Items.ItemsTest.Test_ItemFactory_ItemList();
+
+            Test.Maker.Properties.PropertiesTest.PropertyBase_Test();
 
             GC.Collect();
         }

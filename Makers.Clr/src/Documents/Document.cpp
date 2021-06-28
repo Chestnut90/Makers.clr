@@ -37,7 +37,7 @@ System::Int32^ Makers::Net::Documents::Document::Count::get()
 //@ constructor
 Makers::Net::Documents::Document::Document()
 {
-	document_ = new Document_();
+	document_ = new Makers::Documents::Document();
 }
 
 //@ constructor with id

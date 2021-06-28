@@ -1,27 +1,52 @@
 #include "pch.h"
 #include "PropertyGroup.h"
 
+// pures
+#include <algorithm>
+#include <map>
+#include <typeinfo>
+
 #include "../../../../Makers.Pure/Makers.Pure/Include/Properties/PropertyGroup.h"
+#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/PropertyBase.h"
+#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/InputProperty.h"
+#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/StaticProperty.h"
+#include "../../../../Makers.Pure/Makers.Pure/Include/Properties/OutputProperty.h"
 
+// refs
 #include "PropertyBase.h"
-#include "../Conversions/Converter.h"
+#include "InputProperty.h"
+#include "StaticProperty.h"
+#include "OutputProperty.h"
 
-//@ Count
+// helpers
+#include "../Conversions/Converter.h"
+#include "../Conversions/Utils.h"
+
+using Strings_ = Conversion::Strings;
+
+//@ count getter
 System::Int32^ Makers::Net::Properties::PropertyGroup::Count::get()
 {
 	return property_group_->Count();
 }
 
-//@ constructor
-Makers::Net::Properties::PropertyGroup::PropertyGroup()
+//@ internal constructor
+//@ created by item base
+Makers::Net::Properties::PropertyGroup::PropertyGroup(
+	Makers::Net::Items::ItemBase^ ownerItem,
+	Makers::Properties::PropertyGroup& _property_group)
 {
-	property_group_ = new PropertyGroup_();
+	this->ownerItem = ownerItem;
+	property_group_ = &_property_group;
 }
 
-//@ destructor
+//@ internal destructor
+//@ destroy
 Makers::Net::Properties::PropertyGroup::~PropertyGroup()
 {
-	delete property_group_;
+	// not release memory -> item base release it
+	// delete property_group_;
+	// delete ownerItem;
 }
 
 //@ finalizer
@@ -30,15 +55,19 @@ Makers::Net::Properties::PropertyGroup::!PropertyGroup()
 
 }
 
-//@ [name] operator
-Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::operator[] (System::String^ name)
-{
-	std::string std_name;
-	Conversion::ConvertString(name, std_name);
+//Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::operator[](System::String ^ name)
+//{
+//	std::string std_name = Strings_::ToString(name);
+//	auto property_base = (*property_group_)[std_name];
+//
+//	return Cast(&property_base);
+//}
 
-	auto property = (*property_group_)[std_name];
-	// TODO : how to change property type
-	return nullptr;
+Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::QueryPropertyName(System::String ^ name)
+{
+	std::string std_name = Strings_::ToString(name);
+	auto property_base = property_group_->QueryPropertyName(std_name);
+	return Cast(property_base);
 }
 
 //@ query with id
@@ -46,19 +75,43 @@ Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::Q
 {
 	std::string std_id;
 	Conversion::ConvertString(id, std_id);
-
 	auto property = property_group_->QueryPropertyID(std_id);
-	// TODO: how to change property type
+
+	return Cast(property);
+}
+
+Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::Cast(Makers::Properties::PropertyBase* _property_base)
+{
+	auto input_property = dynamic_cast<Makers::Properties::InputProperty*>(_property_base);
+	if (input_property != nullptr)
+	{
+		return gcnew InputProperty(ownerItem, *input_property);
+	}
+
+	auto static_property = dynamic_cast<Makers::Properties::StaticProperty*>(_property_base);
+	if (static_property != nullptr)
+	{
+		return gcnew StaticProperty(ownerItem, *static_property);
+	}
+
+	auto output_property = dynamic_cast<Makers::Properties::OutputProperty*>(_property_base);
+	if (output_property != nullptr)
+	{
+		return gcnew OutputProperty(ownerItem, *output_property);
+	}
+
 	return nullptr;
 }
 
-//@ query with name
-Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::QueryPropertyName(System::String^ name)
+System::Collections::Generic::List<Makers::Net::Properties::PropertyBase^>^ Makers::Net::Properties::PropertyGroup::ToList()
 {
-	std::string std_name;
-	Conversion::ConvertString(name, std_name);
+	auto list = gcnew System::Collections::Generic::List<Makers::Net::Properties::PropertyBase^>();
 
-	auto property = (*property_group_)[std_name];
-	// TODO: how to change proeprty type
-	return nullptr;
+	for (auto it = property_group_->Begin(); it != property_group_->End(); ++it)
+	{
+		auto property = it->second;
+		list->Add(Cast(property));
+	}
+
+	return list;
 }

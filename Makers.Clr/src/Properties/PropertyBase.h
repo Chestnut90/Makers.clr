@@ -1,23 +1,29 @@
 #pragma once
 
+#include "../IXmlNodeAble.h"
+
 namespace Makers
 {
-
 	namespace Properties { class PropertyBase; }
 	namespace Net
 	{
 		namespace Items { ref class ItemBase; }
 		namespace Properties
 		{
-			public ref class PropertyBase
+			// non memory hold
+			public ref class PropertyBase : 
+				public IXmlNodeAble
 			{
 
-			private: 
+			private:
 				//@ pure property base object
 				Makers::Properties::PropertyBase* property_base_;
 
+				//@ ref ownerItem
+				Makers::Net::Items::ItemBase^ ownerItem = nullptr;
 #pragma region Properties
-			public: 
+
+			public:
 
 				//@ ID
 				property System::String^ ID
@@ -31,18 +37,14 @@ namespace Makers
 					System::String^ get();
 				}
 
-				//@ TODO : how to connection 
 				//@ OwnerItem
-				property ItemBase^ OwnerItem
+				property Makers::Net::Items::ItemBase^ OwnerItem
 				{
-					Makers::Net::Items::ItemBase^ get()
-					private: // TODO : is this syntax ok?
-						void set(Makers::Net::Items::ItemBase^ item);
+					Makers::Net::Items::ItemBase^ get();
 				}
 
-					// TODO : computable
+				// TODO : computable
 
-				// TODO : dll updated and connection
 				//@ IsOptional
 				property bool IsOptional
 				{
@@ -58,22 +60,39 @@ namespace Makers
 #pragma endregion
 
 #pragma region ctors
-			public: 
-
+			internal:
 				//@ constructor
-				PropertyBase();
+				PropertyBase(
+					Makers::Net::Items::ItemBase^ ownerItem,
+					Makers::Properties::PropertyBase& propertyBase);
 
 				//@ destructor
 				virtual ~PropertyBase();
 
+			public:
+				//@ TODO : how to imple?
 				//@ finalizer
 				!PropertyBase();
 #pragma endregion
 
-			public: 
-
+			public:
 				//@ to data
 				virtual System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData();
+
+			internal:
+				//@ export pure instance
+				virtual Makers::Properties::PropertyBase* Export();
+
+#pragma region implement IXmlNodeAble
+
+			public:
+
+				virtual System::Xml::XmlNode^ ToXml(System::Xml::XmlDocument^) override;
+
+				virtual void LoadFromXml(System::Xml::XmlNode^) override;
+
+
+#pragma endregion
 
 			};
 		}

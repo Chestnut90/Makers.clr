@@ -4,6 +4,7 @@
 
 namespace Makers
 {
+	namespace Properties { class StaticProperty; }
 	namespace Net
 	{
 		namespace Properties
@@ -13,7 +14,9 @@ namespace Makers
 			{
 
 			public: 
-				StaticProperty();
+				StaticProperty(
+					Makers::Net::Items::ItemBase^ ownerItem,
+					Makers::Properties::StaticProperty& staticProperty);
 				~StaticProperty();
 				!StaticProperty();
 

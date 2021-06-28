@@ -2,12 +2,17 @@
 #include "InputProperty.h"
 
 
+// pures
 //@ To casting
 #include "../../../../Makers.Pure/Makers.Pure/Include/Properties/InputProperty.h"
 
+// refs
+#include "../Items/ItemBase.h"	// ref itembase
 
-Makers::Net::Properties::InputProperty::InputProperty() : 
-PropertyBase()
+Makers::Net::Properties::InputProperty::InputProperty(
+	Makers::Net::Items::ItemBase^ ownerItem,
+	Makers::Properties::InputProperty& inputProperty) :
+PropertyBase(ownerItem, inputProperty)
 {
 
 }
@@ -22,7 +27,7 @@ Makers::Net::Properties::InputProperty::!InputProperty()
 
 }
 
-System::Collections::Generic::Dictionary<System::String^, System::String^>^ Makers::Net::Properties::InputProperty::ToData() override
+System::Collections::Generic::Dictionary<System::String^, System::String^>^ Makers::Net::Properties::InputProperty::ToData()
 {
 	auto data = PropertyBase::ToData();
 
@@ -32,3 +37,4 @@ System::Collections::Generic::Dictionary<System::String^, System::String^>^ Make
 
 	return data;
 }
+

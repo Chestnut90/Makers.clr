@@ -46,10 +46,10 @@ namespace Makers
 				Document(System::String^ id);
 
 				//@ destructor
-				~Document()
-			
+				~Document();
+
 				//@ finalizer
-				!Document()
+				!Document();
 			
 			public: 
 				//@ add item

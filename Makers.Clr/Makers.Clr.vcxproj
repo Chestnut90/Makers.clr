@@ -135,10 +135,12 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="src\Conversions\Converter.h" />
+    <ClInclude Include="src\Conversions\Utils.h" />
     <ClInclude Include="src\Documents\Document.h" />
     <ClInclude Include="src\Documents\DocumentIO.h" />
     <ClInclude Include="src\Items\ItemBase.h" />
     <ClInclude Include="src\Items\ItemFactory.h" />
+    <ClInclude Include="src\IXmlNodeAble.h" />
     <ClInclude Include="src\Properties\InputProperty.h" />
     <ClInclude Include="src\Properties\OutputProperty.h" />
     <ClInclude Include="src\Properties\PropertyBase.h" />
@@ -158,17 +160,12 @@
     <ClCompile Include="src\Documents\DocumentIO.cpp" />
     <ClCompile Include="src\Items\ItemBase.cpp" />
     <ClCompile Include="src\Items\ItemFactory.cpp" />
+    <ClCompile Include="src\IXmlNodeAble.cpp" />
     <ClCompile Include="src\Properties\InputProperty.cpp" />
     <ClCompile Include="src\Properties\OutputProperty.cpp" />
     <ClCompile Include="src\Properties\PropertyBase.cpp" />
     <ClCompile Include="src\Properties\PropertyGroup.cpp" />
     <ClCompile Include="src\Properties\StaticProperty.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="app.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
