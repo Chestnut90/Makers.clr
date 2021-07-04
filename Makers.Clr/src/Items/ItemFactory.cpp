@@ -1,12 +1,18 @@
 #include "pch.h"
 #include "ItemFactory.h"
 
+#include <vector>
+#include <map>
 
-#include "ItemBase.h"
+// pures
 #include "../../../../Makers.Pure/Makers.Pure/Include/Items/ItemFactory.h"
-#include "../Conversions/Converter.h"
 
+// refs
+#include "ItemBase.h"
+#include "../Documents/Document.h"
 #include "../Properties/PropertyBase.h"
+
+#include "../Conversions/Converter.h"
 
 using Strings_ = Conversion::Strings;
 
@@ -41,6 +47,13 @@ Makers::Net::Items::ItemFactory::~ItemFactory()
 }
 
 //@ TODO : hide
+void Makers::Net::Items::ItemFactory::IDHandle(Makers::Net::Documents::Document^ document, System::String ^ id)
+{
+	std::string std_id = Strings_::ToString(id);
+	item_factory_->IDHandle(document->Export(), std_id);
+}
+
+//@ TODO : hide
 void Makers::Net::Items::ItemFactory::IDHandle(Makers::Net::Items::ItemBase ^ itemBase, System::String ^ id)
 {
 	std::string std_id = Strings_::ToString(id);
@@ -61,7 +74,15 @@ Makers::Net::Items::ItemBase^ Makers::Net::Items::ItemFactory::Create(System::St
 {
 	std::string std_item_name = Strings_::ToString(itemName);
 	auto item = item_factory_->Create(std_item_name);
-	return gcnew ItemBase(*item);
+	return gcnew ItemBase(item);
+}
+
+//@ destroy item
+void Makers::Net::Items::ItemFactory::DestoryItem(Makers::Net::Items::ItemBase^ item)
+{
+	auto item_base = item->Export();
+
+	item_factory_->DeleteItem(item_base);
 }
 
 //@ dictionary of list

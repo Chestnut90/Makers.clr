@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../IXmlNodeAble.h"
+
 namespace Makers 
 {
 	namespace Properties 
@@ -15,13 +17,18 @@ namespace Makers
 			ref class PropertyBase;
 			//@ property group
 			//@ subordinated class in itembase
-			public ref class PropertyGroup
+			public ref class PropertyGroup :
+				public IXmlNodeAble
 			{
+#pragma region members
+
 			private: 
 				//@ pure property group object
 				Makers::Properties::PropertyGroup* property_group_;
 
 				Makers::Net::Items::ItemBase^ ownerItem = nullptr;
+
+#pragma endregion
 
 			public:
 				//@ count
@@ -34,7 +41,7 @@ namespace Makers
 				//@ constructor
 				PropertyGroup(
 					Makers::Net::Items::ItemBase^ ownerItem, 
-					Makers::Properties::PropertyGroup& _property_group);
+					Makers::Properties::PropertyGroup* _property_group);
 				//@ destructor
 				~PropertyGroup();
 
@@ -45,9 +52,6 @@ namespace Makers
 
 			public: 
 			
-				//@ [name] operator
-				//operator
-
 				//@ query with name
 				PropertyBase^ QueryPropertyName(System::String^ name);
 
@@ -58,8 +62,23 @@ namespace Makers
 				System::Collections::Generic::List<PropertyBase^>^ ToList();
 
 			private:
+				// TODO : to make it efficiently
 				//@ cast to ref
-				PropertyBase^ Cast(Makers::Properties::PropertyBase* _property_base);
+				PropertyBase^ _Cast(Makers::Properties::PropertyBase* _property_base);
+
+#pragma region xml, implement IXmlNodeAble
+
+			public:
+
+				//@ from xml node
+				//@ xml node as proeprty group
+				void LoadFromXml(System::Xml::XmlNode^) override;
+				
+				//@ to xml
+				//@ xml document as root
+				System::Xml::XmlNode^ ToXml(System::Xml::XmlDocument^) override;
+
+#pragma endregion
 
 			};
 		}

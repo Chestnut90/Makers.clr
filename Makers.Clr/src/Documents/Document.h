@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../IXmlNodeAble.h"
+
 namespace Makers
 {
 	// forward declaration
@@ -11,7 +13,8 @@ namespace Makers
 
 		namespace Documents
 		{
-			public ref class Document
+			public ref class Document :
+				public IXmlNodeAble
 			{
 #pragma region Member and Properties
 			//@ pure document object
@@ -37,20 +40,26 @@ namespace Makers
 				{
 					System::Int32^ get();
 				}
+
+				//@ Items
+				property System::Collections::Generic::List<Makers::Net::Items::ItemBase^>^ Items
+				{
+					System::Collections::Generic::List<Makers::Net::Items::ItemBase^>^ get();
+				}
+
 #pragma endregion
 			public: 
 				//@ constructor
 				Document();
 			
-				//@ constructor with id
-				Document(System::String^ id);
-
 				//@ destructor
 				~Document();
 
 				//@ finalizer
 				!Document();
 			
+#pragma region Items
+
 			public: 
 				//@ add item
 				void AddItem(Makers::Net::Items::ItemBase^ item);
@@ -79,8 +88,31 @@ namespace Makers
 				//@ Clear All Items
 				void ClearItems();
 
+#pragma endregion
+
+				//@ todo
 				//@ run with async
 				bool RunAsync();
+
+				//@ to data
+				System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData();
+
+			internal:
+				//@ export pure document handle
+				Makers::Documents::Document* Export();
+
+#pragma region xml, implement IXmlNodeAble
+
+			public:
+				//@ load from xml
+				//@ node as document
+				virtual void LoadFromXml(System::Xml::XmlNode^) override;
+
+				//@ to xml
+				//@ xml document as root
+				virtual System::Xml::XmlNode^ ToXml(System::Xml::XmlDocument^) override;
+
+#pragma endregion
 
 			};
 		}

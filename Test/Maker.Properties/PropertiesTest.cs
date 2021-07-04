@@ -10,13 +10,13 @@ namespace Test.Maker.Properties
     {
         public static void PropertyBase_Test()
         {
-            var randomItem = Makers.Net.Items.ItemFactory.Instance().Create("RandomFloatImageItem");
+            var randomItem = Makers.Net.Items.ItemFactory.Instance().Create("FloatThresholdingItem");
 
             foreach(var property in randomItem.InputProperties.ToList())
             {
                 var inputProperty = property as Makers.Net.Properties.InputProperty;
                 Console.WriteLine(inputProperty.Name);
-                Console.WriteLine(inputProperty.ConnectedProperty.Name);
+                //Console.WriteLine(inputProperty.ConnectedProperty.Name);
             }
 
             foreach(var property in randomItem.StaticProperties.ToList())

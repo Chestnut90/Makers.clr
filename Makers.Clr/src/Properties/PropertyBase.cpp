@@ -96,9 +96,9 @@ Makers::Properties::PropertyBase * Makers::Net::Properties::PropertyBase::Export
 	return property_base_;
 }
 
-System::Xml::XmlNode ^ Makers::Net::Properties::PropertyBase::ToXml(System::Xml::XmlDocument ^document)
+System::Xml::XmlNode ^ Makers::Net::Properties::PropertyBase::ToXml(System::Xml::XmlDocument^ xmlDocument)
 {
-	auto xmlNode = document->CreateElement("Property");
+	auto xmlNode = xmlDocument->CreateElement("Property");
 
 	// set attributes
 	for each (auto pair in ToData())
@@ -106,7 +106,7 @@ System::Xml::XmlNode ^ Makers::Net::Properties::PropertyBase::ToXml(System::Xml:
 		auto name = pair.Key;
 		auto value = pair.Value;
 
-		auto xmlAttribute = document->CreateAttribute(name);
+		auto xmlAttribute = xmlDocument->CreateAttribute(name);
 		xmlAttribute->Value = value;
 		xmlNode->Attributes->Append(xmlAttribute);
 
@@ -116,15 +116,24 @@ System::Xml::XmlNode ^ Makers::Net::Properties::PropertyBase::ToXml(System::Xml:
 	return xmlNode;
 }
 
-void Makers::Net::Properties::PropertyBase::LoadFromXml(System::Xml::XmlNode ^node)
+void Makers::Net::Properties::PropertyBase::LoadFromXml(System::Xml::XmlNode^ xmlNode)
 {
-	// TODO : parsing error
+	// TODO : error
+	if (xmlNode == nullptr) { throw std::exception("Erorr in property node"); }
+	if (!xmlNode->Name->Equals("Property")) { return; }
 
-	// id
-	auto id = node->Attributes["ID"]->Value;
+	// set id
+	auto id = xmlNode->Attributes["ID"]->Value;
 	Makers::Net::Items::ItemFactory::Instance()->IDHandle(this, id);
 
-	// Is Used
-	//..
+	// set name -> do nothing, default value
+	// set owner item -> do nothing, automatically mapped
+	// set is optional -> do nothing, default value
+	// set is used
+	bool isUsed;
+	bool try_is_used = System::Boolean::TryParse(xmlNode->Attributes["IsUsed"]->Value, isUsed);
+	IsUsed = try_is_used ? isUsed : true;	// default to true
+	
+	// TODO : computable
 
 }

@@ -19,6 +19,9 @@
     <Filter Include="pre">
       <UniqueIdentifier>{2def3758-bd20-4b0b-ab6e-ee228d22eefc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Computables">
+      <UniqueIdentifier>{c3f8abca-6344-4a59-b8dc-932cdf472655}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Conversions\Converter.h">
@@ -63,6 +66,15 @@
     <ClInclude Include="src\IXmlNodeAble.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\Computables\Computable.h">
+      <Filter>src\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Computables\Image.h">
+      <Filter>src\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Computables\Real.h">
+      <Filter>src\Computables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Conversions\Converter.cpp">
@@ -103,6 +115,15 @@
     </ClCompile>
     <ClCompile Include="src\IXmlNodeAble.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Computables\Computable.cpp">
+      <Filter>src\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Computables\Image.cpp">
+      <Filter>src\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Computables\Real.cpp">
+      <Filter>src\Computables</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

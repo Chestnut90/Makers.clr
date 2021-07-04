@@ -27,7 +27,7 @@ namespace Test.Items
 
         public static void Test_ItemBase()
         {
-            ItemBase sample = ItemFactory.Instance().Create("RandomFloatImageItem");
+            ItemBase sample = ItemFactory.Instance().Create("FloatThresholdingItem");
 
             Console.WriteLine(sample.ID);
             Console.WriteLine(sample.ItemName);

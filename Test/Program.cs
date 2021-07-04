@@ -20,6 +20,8 @@ namespace Test
 
             Test.Maker.Properties.PropertiesTest.PropertyBase_Test();
 
+            Test.Documents.DocumentTest.Test_Simple_Document();
+
             GC.Collect();
         }
     }

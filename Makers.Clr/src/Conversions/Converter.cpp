@@ -53,7 +53,7 @@ System::String^ Conversion::ConvertString(std::string string)
 	return gcnew System::String(string.c_str());
 }
 
-System::String ^ Conversion::Strings::ToString(std::string _string)
+System::String^ Conversion::Strings::ToString(std::string _string)
 {
 	return gcnew System::String(_string.c_str());
 }

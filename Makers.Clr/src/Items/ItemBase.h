@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../IXmlNodeAble.h"
+
 namespace Makers
 {
 	namespace Items { class ItemBase; }
@@ -8,8 +10,10 @@ namespace Makers
 		namespace Properties { ref class PropertyGroup; }
 		namespace Items
 		{
-			public ref class ItemBase 
+			public ref class ItemBase :
+				public IXmlNodeAble
 			{
+#pragma region members
 
 			private: 
 				//@ pure item base object
@@ -22,6 +26,8 @@ namespace Makers
 				//@ output properties
 				Makers::Net::Properties::PropertyGroup^ outputProperties = nullptr;
 
+#pragma endregion
+#pragma region properties
 			public: 
 
 				//@ ID
@@ -67,11 +73,12 @@ namespace Makers
 					Makers::Net::Properties::PropertyGroup^ get();
 				}
 
-			
+#pragma endregion
+
 			internal: 
 				//@ internal constructor
 				//@ access from item factory
-				ItemBase(Makers::Items::ItemBase& _item_base);
+				ItemBase(Makers::Items::ItemBase* _item_base);
 
 				//@ destructor
 				~ItemBase();
@@ -81,11 +88,40 @@ namespace Makers
 				//@ finalizer
 				!ItemBase();
 			
+			public:
+
+				//@ to data
+				System::Collections::Generic::Dictionary<System::String^, System::String^>^ ToData();
 			
 			internal: 
 				//@ internal function
 				//@ export pure object
 				Makers::Items::ItemBase* Export();
+
+#pragma region Xml
+
+			public:
+
+				//@ load from xml
+				//@ xml node as item base
+				virtual void LoadFromXml(System::Xml::XmlNode^) override;
+
+				//@ to xml node
+				//@ xml document as root
+				virtual System::Xml::XmlNode^ ToXml(System::Xml::XmlDocument^) override;
+
+			private:
+
+				//@ TODO : to make it automatically
+				//@ properties to xml node
+				//@ xml document as root
+				//@ name as string
+				System::Xml::XmlNode^ _PropertiesToXml(
+					System::Xml::XmlDocument^,
+					Makers::Net::Properties::PropertyGroup^,
+					System::String^);
+
+#pragma endregion
 
 			};
 		}

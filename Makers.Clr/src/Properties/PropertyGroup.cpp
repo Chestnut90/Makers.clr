@@ -34,18 +34,21 @@ System::Int32^ Makers::Net::Properties::PropertyGroup::Count::get()
 //@ created by item base
 Makers::Net::Properties::PropertyGroup::PropertyGroup(
 	Makers::Net::Items::ItemBase^ ownerItem,
-	Makers::Properties::PropertyGroup& _property_group)
+	Makers::Properties::PropertyGroup* _property_group) :
+	IXmlNodeAble()
 {
 	this->ownerItem = ownerItem;
-	property_group_ = &_property_group;
+	property_group_ = _property_group;
 }
 
 //@ internal destructor
 //@ destroy
 Makers::Net::Properties::PropertyGroup::~PropertyGroup()
 {
-	// not release memory -> item base release it
+	// * property_group_ memory released by item base
 	// delete property_group_;
+
+	// * just pointer
 	// delete ownerItem;
 }
 
@@ -55,32 +58,26 @@ Makers::Net::Properties::PropertyGroup::!PropertyGroup()
 
 }
 
-//Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::operator[](System::String ^ name)
-//{
-//	std::string std_name = Strings_::ToString(name);
-//	auto property_base = (*property_group_)[std_name];
-//
-//	return Cast(&property_base);
-//}
-
-Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::QueryPropertyName(System::String ^ name)
+//@ Query property with name
+Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::QueryPropertyName(System::String ^ name)
 {
 	std::string std_name = Strings_::ToString(name);
 	auto property_base = property_group_->QueryPropertyName(std_name);
-	return Cast(property_base);
+	return _Cast(property_base);
 }
 
-//@ query with id
+//@ Query property with id
 Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::QueryPropertyID(System::String^ id)
 {
 	std::string std_id;
 	Conversion::ConvertString(id, std_id);
 	auto property = property_group_->QueryPropertyID(std_id);
-
-	return Cast(property);
+	return _Cast(property);
 }
 
-Makers::Net::Properties::PropertyBase ^ Makers::Net::Properties::PropertyGroup::Cast(Makers::Properties::PropertyBase* _property_base)
+//@ Cast property base to each inherited type
+Makers::Net::Properties::PropertyBase^ Makers::Net::Properties::PropertyGroup::_Cast(
+	Makers::Properties::PropertyBase* _property_base)
 {
 	auto input_property = dynamic_cast<Makers::Properties::InputProperty*>(_property_base);
 	if (input_property != nullptr)
@@ -110,8 +107,45 @@ System::Collections::Generic::List<Makers::Net::Properties::PropertyBase^>^ Make
 	for (auto it = property_group_->Begin(); it != property_group_->End(); ++it)
 	{
 		auto property = it->second;
-		list->Add(Cast(property));
+		list->Add(_Cast(property));
 	}
 
 	return list;
 }
+
+#pragma region xml, implement IXmlNodeAble
+
+//@ from xml node
+//@ xml node as proeprty group
+void Makers::Net::Properties::PropertyGroup::LoadFromXml(System::Xml::XmlNode^ xmlNode)
+{
+	if (xmlNode == nullptr) { throw std::exception("property group node is null"); }
+	if (!xmlNode->Name->Equals("PropertyGroup")) { return; };
+
+	auto xmlPropertyNodes = xmlNode->SelectNodes("Property");
+	if (xmlPropertyNodes->Count != Count) { throw std::exception("parsing error in Property group, diff count"); }
+
+	// TODO : to make it efficiently
+	int i = 0;
+	for each (auto property in ToList())
+	{
+		property->LoadFromXml(xmlPropertyNodes->Item(i));
+		++i;
+	}
+}
+
+//@ to xml
+//@ xml document as root
+System::Xml::XmlNode ^ Makers::Net::Properties::PropertyGroup::ToXml(System::Xml::XmlDocument^ xmlDocument)
+{
+	auto xmlNode = xmlDocument->CreateElement("PropertyGroup");
+
+	for each (auto property in ToList())
+	{
+		xmlNode->AppendChild(property->ToXml(xmlDocument));
+	}
+
+	return xmlNode;
+}
+
+#pragma endregion

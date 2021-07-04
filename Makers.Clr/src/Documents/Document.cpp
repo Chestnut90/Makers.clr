@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "Document.h"
 
+// pures
 #include "../../../../Makers.Pure/Makers.Pure/Include/Documents/Document.h"
 
+// refs
 #include "../Items/ItemBase.h"
+#include "../Items/ItemFactory.h"
 
 #include "../Conversions/Converter.h"
 
@@ -34,16 +37,25 @@ System::Int32^ Makers::Net::Documents::Document::Count::get()
 	return document_->Count();
 }
 
-//@ constructor
-Makers::Net::Documents::Document::Document()
+//@ Items
+System::Collections::Generic::List<Makers::Net::Items::ItemBase^>^ 
+Makers::Net::Documents::Document::Items::get()
 {
-	document_ = new Makers::Documents::Document();
+	auto list = gcnew System::Collections::Generic::List<Makers::Net::Items::ItemBase^>();
+
+	for (int i = 0; i < document_->Count(); i++)
+	{
+		auto item = document_->SearchItem(i);
+		list->Add(gcnew Makers::Net::Items::ItemBase(item));
+	}
+	return list;
 }
 
-//@ constructor with id
-Makers::Net::Documents::Document::Document(System::String^ id)
+//@ constructor
+Makers::Net::Documents::Document::Document() :
+	IXmlNodeAble()
 {
-	// TODO : 
+	document_ = new Makers::Documents::Document();
 }
 
 //@ destructor
@@ -52,10 +64,10 @@ Makers::Net::Documents::Document::~Document()
 	delete document_;
 }
 
+//@ TODO : 
 //@ finalizer
 Makers::Net::Documents::Document::!Document()
 { 
-	bool a = false;
 }
 
 //@ add item
@@ -85,16 +97,14 @@ Makers::Net::Items::ItemBase^ Makers::Net::Documents::Document::SearchItem(Syste
 	std::string std_id;
 	Conversion::ConvertString(id, std_id);
 	auto item = document_->SearchItem(std_id);
-	// TODO :??????
-	return nullptr;
+	return gcnew Makers::Net::Items::ItemBase(item);
 }
 
 //@ search item with index
 Makers::Net::Items::ItemBase^ Makers::Net::Documents::Document::SearchItem(System::Int32^ index)
 {
 	auto item = document_->SearchItem(*index);
-	// TODO : ????
-	return nullptr;
+	return gcnew Makers::Net::Items::ItemBase(item);
 }
 
 //@ Search Item Index
@@ -108,16 +118,19 @@ System::Int32^ Makers::Net::Documents::Document::SearchItemIndex(System::String^
 {
 	std::string std_id;
 	Conversion::ConvertString(id, std_id);
-	auto item = document_->SearchItemIndex(std_id);
-	// TODO: 
-	return nullptr;
+	return document_->SearchItemIndex(std_id);
 }
 
 //@ Find root items
 System::Collections::Generic::List<Makers::Net::Items::ItemBase^>^ Makers::Net::Documents::Document::FindRootItems()
 {
-	// TODO : 
-	return gcnew System::Collections::Generic::List<Makers::Net::Items::ItemBase^>();
+	auto list = gcnew System::Collections::Generic::List<Makers::Net::Items::ItemBase^>();
+
+	for (auto item : document_->FindRootItems())
+	{
+		list->Add(gcnew Makers::Net::Items::ItemBase(item));
+	}
+	return list;
 }
 
 //@ Clear All Items
@@ -132,3 +145,61 @@ bool Makers::Net::Documents::Document::RunAsync(
 {
 	return true;
 }
+
+//@ to data
+System::Collections::Generic::Dictionary<System::String^, System::String^>^ Makers::Net::Documents::Document::ToData()
+{
+	auto data = gcnew System::Collections::Generic::Dictionary<System::String^, System::String^>();
+
+	data->Add("ID", ID);
+	data->Add("Title", Title);
+	data->Add("ItemCounts", Count->ToString());
+	return data;
+}
+
+//@ export pure document handle
+Makers::Documents::Document * Makers::Net::Documents::Document::Export()
+{
+	return document_;
+}
+
+#pragma region XML
+
+void Makers::Net::Documents::Document::LoadFromXml(System::Xml::XmlNode^ xmlNode)
+{
+	if (!xmlNode->Name->Equals("Document")) { return; }
+
+	// change id
+	auto id = xmlNode->Attributes["ID"]->Value;
+	Makers::Net::Items::ItemFactory::Instance()->IDHandle(this, id);
+
+	// set title
+	Title = xmlNode->Attributes["Title"]->Value;
+	
+	// item counts
+	// do nothing.
+}
+
+System::Xml::XmlNode ^ Makers::Net::Documents::Document::ToXml(System::Xml::XmlDocument^ xmlDocument)
+{
+	auto xmlNode = xmlDocument->CreateElement("Document");
+
+	// set attribute with document data
+	for each (auto pair in ToData())
+	{
+		auto attribute = xmlDocument->CreateAttribute(pair.Key);	// set name with key
+		attribute->Value = pair.Value;	// set value with value
+		xmlNode->Attributes->Append(attribute);
+	}
+
+	// items node
+	for each(auto item in Items)
+	{
+		auto xmlNodeItem = item->ToXml(xmlDocument);
+		xmlNode->AppendChild(xmlNodeItem);
+	}
+
+	return xmlNode;
+}
+
+#pragma endregion
