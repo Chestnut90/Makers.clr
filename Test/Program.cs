@@ -10,17 +10,17 @@ namespace Test
     {
         static void Main(string[] args)
         {
-            //var factory = Makers.Net.Items.ItemFactory.Instance();
 
-            //Documents.DocumentTest.Test_Document();
+            //@ item list test
+            //Test.Items.ItemsTest.Test_ItemFactory_ItemList();
 
-            //Test.Items.ItemsTest.Test_ItemBase();
+            //Test.Maker.Properties.PropertiesTest.PropertyBase_Test();
 
-            Test.Items.ItemsTest.Test_ItemFactory_ItemList();
+            // document test
+            //Test.Documents.DocumentTest.Test_Simple_Document();
 
-            Test.Maker.Properties.PropertiesTest.PropertyBase_Test();
-
-            Test.Documents.DocumentTest.Test_Simple_Document();
+            // surf io test
+            Surf.SurfTest.IO_Test();
 
             GC.Collect();
         }

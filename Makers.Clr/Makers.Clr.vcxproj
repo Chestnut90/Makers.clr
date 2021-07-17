@@ -133,46 +133,59 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CGeneric.h" />
+    <ClInclude Include="CTemplate.h" />
+    <ClInclude Include="Include\Computables\Computable.h" />
+    <ClInclude Include="Include\Computables\ComputableConverter.h" />
+    <ClInclude Include="Include\Computables\Enum.h" />
+    <ClInclude Include="Include\Computables\Image.h" />
+    <ClInclude Include="Include\Computables\Real.h" />
+    <ClInclude Include="Include\Computables\ROI.h" />
+    <ClInclude Include="Include\Conversions\Converter.h" />
+    <ClInclude Include="Include\Conversions\Utils.h" />
+    <ClInclude Include="Include\Documents\Document.h" />
+    <ClInclude Include="Include\Documents\DocumentIO.h" />
+    <ClInclude Include="Include\Items\ItemBase.h" />
+    <ClInclude Include="Include\Items\ItemFactory.h" />
+    <ClInclude Include="Include\IXmlNodeAble.h" />
+    <ClInclude Include="Include\nxSurfs\Surf.h" />
+    <ClInclude Include="Include\nxSurfs\SurfIOException.h" />
+    <ClInclude Include="Include\Properties\InputProperty.h" />
+    <ClInclude Include="Include\Properties\OutputProperty.h" />
+    <ClInclude Include="Include\Properties\PropertyBase.h" />
+    <ClInclude Include="Include\Properties\PropertyException.h" />
+    <ClInclude Include="Include\Properties\PropertyGroup.h" />
+    <ClInclude Include="Include\Properties\StaticProperty.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="src\Computables\Computable.h" />
-    <ClInclude Include="src\Computables\Image.h" />
-    <ClInclude Include="src\Computables\Real.h" />
-    <ClInclude Include="src\Conversions\Converter.h" />
-    <ClInclude Include="src\Conversions\Utils.h" />
-    <ClInclude Include="src\Documents\Document.h" />
-    <ClInclude Include="src\Documents\DocumentIO.h" />
-    <ClInclude Include="src\Items\ItemBase.h" />
-    <ClInclude Include="src\Items\ItemFactory.h" />
-    <ClInclude Include="src\IXmlNodeAble.h" />
-    <ClInclude Include="src\Properties\InputProperty.h" />
-    <ClInclude Include="src\Properties\OutputProperty.h" />
-    <ClInclude Include="src\Properties\PropertyBase.h" />
-    <ClInclude Include="src\Properties\PropertyGroup.h" />
-    <ClInclude Include="src\Properties\StaticProperty.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="CTemplate.cpp" />
+    <ClCompile Include="Include\Computables\Computable.cpp" />
+    <ClCompile Include="Include\Computables\ComputableConverter.cpp" />
+    <ClCompile Include="Include\Computables\Enum.cpp" />
+    <ClCompile Include="Include\Computables\Image.cpp" />
+    <ClCompile Include="Include\Computables\Real.cpp" />
+    <ClCompile Include="Include\Computables\ROI.cpp" />
+    <ClCompile Include="Include\Conversions\Converter.cpp" />
+    <ClCompile Include="Include\Documents\Document.cpp" />
+    <ClCompile Include="Include\Documents\DocumentIO.cpp" />
+    <ClCompile Include="Include\Items\ItemBase.cpp" />
+    <ClCompile Include="Include\Items\ItemFactory.cpp" />
+    <ClCompile Include="Include\nxSurfs\Surf.cpp" />
+    <ClCompile Include="Include\nxSurfs\SurfIOException.cpp" />
+    <ClCompile Include="Include\Properties\InputProperty.cpp" />
+    <ClCompile Include="Include\Properties\OutputProperty.cpp" />
+    <ClCompile Include="Include\Properties\PropertyBase.cpp" />
+    <ClCompile Include="Include\Properties\PropertyException.cpp" />
+    <ClCompile Include="Include\Properties\PropertyGroup.cpp" />
+    <ClCompile Include="Include\Properties\StaticProperty.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Computables\Computable.cpp" />
-    <ClCompile Include="src\Computables\Image.cpp" />
-    <ClCompile Include="src\Computables\Real.cpp" />
-    <ClCompile Include="src\Conversions\Converter.cpp" />
-    <ClCompile Include="src\Documents\Document.cpp" />
-    <ClCompile Include="src\Documents\DocumentIO.cpp" />
-    <ClCompile Include="src\Items\ItemBase.cpp" />
-    <ClCompile Include="src\Items\ItemFactory.cpp" />
-    <ClCompile Include="src\IXmlNodeAble.cpp" />
-    <ClCompile Include="src\Properties\InputProperty.cpp" />
-    <ClCompile Include="src\Properties\OutputProperty.cpp" />
-    <ClCompile Include="src\Properties\PropertyBase.cpp" />
-    <ClCompile Include="src\Properties\PropertyGroup.cpp" />
-    <ClCompile Include="src\Properties\StaticProperty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

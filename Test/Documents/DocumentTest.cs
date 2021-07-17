@@ -27,10 +27,6 @@ namespace Test.Documents
             return floatThresholdingItem;
         }
 
-        public static Makers.Net.Items.ItemBase Test_Create_StreamItem()
-        {
-
-        }
 
         public static void Test_Simple_Document()
         {
@@ -40,6 +36,7 @@ namespace Test.Documents
             var item1_id = item1.ID;
             doc.AddItem(item1);
 
+            doc.RemoveItem(item1);
 
 
 

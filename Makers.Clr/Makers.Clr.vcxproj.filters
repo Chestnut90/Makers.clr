@@ -1,129 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{67630506-4112-4ffd-96ef-8b7ceb7702d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Conversions">
-      <UniqueIdentifier>{4c4b31d1-6028-4408-bce5-9c52bb1eb8d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Documents">
-      <UniqueIdentifier>{9e9c5ab0-1bd8-4d1f-82eb-935a0f91875a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Items">
-      <UniqueIdentifier>{f8e4b7b4-38f9-466c-b731-2b884a68fed1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Properties">
-      <UniqueIdentifier>{20fa710c-2a3b-446a-8eb4-7b29c73afc41}</UniqueIdentifier>
-    </Filter>
     <Filter Include="pre">
       <UniqueIdentifier>{2def3758-bd20-4b0b-ab6e-ee228d22eefc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Computables">
-      <UniqueIdentifier>{c3f8abca-6344-4a59-b8dc-932cdf472655}</UniqueIdentifier>
+    <Filter Include="Template_Generic">
+      <UniqueIdentifier>{5c9de99b-a80c-4dbd-ae2d-aec034bd84c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{67630506-4112-4ffd-96ef-8b7ceb7702d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Conversions">
+      <UniqueIdentifier>{4c4b31d1-6028-4408-bce5-9c52bb1eb8d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Computables">
+      <UniqueIdentifier>{00b81397-f583-4fe1-893a-59d587e191cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Properties">
+      <UniqueIdentifier>{2396dacd-b671-40bb-90f9-3533ca3888b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Items">
+      <UniqueIdentifier>{36e2f3bb-d883-4426-8f3f-1c67737f93a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\Documents">
+      <UniqueIdentifier>{9d0ebf58-b182-4fdf-8386-272d2afca691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\nxSurfs">
+      <UniqueIdentifier>{36772da1-05c3-418d-9bc0-e4db6ce8292a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Conversions\Converter.h">
-      <Filter>src\Conversions</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Documents\Document.h">
-      <Filter>src\Documents</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Documents\DocumentIO.h">
-      <Filter>src\Documents</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Items\ItemFactory.h">
-      <Filter>src\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Properties\InputProperty.h">
-      <Filter>src\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Properties\OutputProperty.h">
-      <Filter>src\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Properties\PropertyBase.h">
-      <Filter>src\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Properties\StaticProperty.h">
-      <Filter>src\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Properties\PropertyGroup.h">
-      <Filter>src\Properties</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Items\ItemBase.h">
-      <Filter>src\Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>pre</Filter>
-    </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>pre</Filter>
     </ClInclude>
-    <ClInclude Include="src\Conversions\Utils.h">
-      <Filter>src\Conversions</Filter>
+    <ClInclude Include="CTemplate.h">
+      <Filter>Template_Generic</Filter>
     </ClInclude>
-    <ClInclude Include="src\IXmlNodeAble.h">
-      <Filter>src</Filter>
+    <ClInclude Include="CGeneric.h">
+      <Filter>Template_Generic</Filter>
     </ClInclude>
-    <ClInclude Include="src\Computables\Computable.h">
-      <Filter>src\Computables</Filter>
+    <ClInclude Include="Include\Computables\ROI.h">
+      <Filter>Include\Computables</Filter>
     </ClInclude>
-    <ClInclude Include="src\Computables\Image.h">
-      <Filter>src\Computables</Filter>
+    <ClInclude Include="Include\Computables\Computable.h">
+      <Filter>Include\Computables</Filter>
     </ClInclude>
-    <ClInclude Include="src\Computables\Real.h">
-      <Filter>src\Computables</Filter>
+    <ClInclude Include="Include\Computables\ComputableConverter.h">
+      <Filter>Include\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Computables\Image.h">
+      <Filter>Include\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Computables\Real.h">
+      <Filter>Include\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\StaticProperty.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\InputProperty.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\OutputProperty.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\PropertyBase.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\PropertyException.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Properties\PropertyGroup.h">
+      <Filter>Include\Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Items\ItemBase.h">
+      <Filter>Include\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Items\ItemFactory.h">
+      <Filter>Include\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Documents\DocumentIO.h">
+      <Filter>Include\Documents</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Documents\Document.h">
+      <Filter>Include\Documents</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Conversions\Converter.h">
+      <Filter>Include\Conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Conversions\Utils.h">
+      <Filter>Include\Conversions</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\IXmlNodeAble.h">
+      <Filter>Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\Computables\Enum.h">
+      <Filter>Include\Computables</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\nxSurfs\Surf.h">
+      <Filter>Include\nxSurfs</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\nxSurfs\SurfIOException.h">
+      <Filter>Include\nxSurfs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Conversions\Converter.cpp">
-      <Filter>src\Conversions</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Documents\Document.cpp">
-      <Filter>src\Documents</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Documents\DocumentIO.cpp">
-      <Filter>src\Documents</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Items\ItemFactory.cpp">
-      <Filter>src\Items</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Properties\InputProperty.cpp">
-      <Filter>src\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Properties\OutputProperty.cpp">
-      <Filter>src\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Properties\PropertyBase.cpp">
-      <Filter>src\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Properties\StaticProperty.cpp">
-      <Filter>src\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Properties\PropertyGroup.cpp">
-      <Filter>src\Properties</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Items\ItemBase.cpp">
-      <Filter>src\Items</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>pre</Filter>
     </ClCompile>
     <ClCompile Include="AssemblyInfo.cpp">
       <Filter>pre</Filter>
     </ClCompile>
-    <ClCompile Include="src\IXmlNodeAble.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="CTemplate.cpp">
+      <Filter>Template_Generic</Filter>
     </ClCompile>
-    <ClCompile Include="src\Computables\Computable.cpp">
-      <Filter>src\Computables</Filter>
+    <ClCompile Include="Include\Computables\Computable.cpp">
+      <Filter>Include\Computables</Filter>
     </ClCompile>
-    <ClCompile Include="src\Computables\Image.cpp">
-      <Filter>src\Computables</Filter>
+    <ClCompile Include="Include\Computables\ComputableConverter.cpp">
+      <Filter>Include\Computables</Filter>
     </ClCompile>
-    <ClCompile Include="src\Computables\Real.cpp">
-      <Filter>src\Computables</Filter>
+    <ClCompile Include="Include\Computables\Image.cpp">
+      <Filter>Include\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Computables\Real.cpp">
+      <Filter>Include\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Computables\ROI.cpp">
+      <Filter>Include\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\InputProperty.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\OutputProperty.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\PropertyBase.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\PropertyException.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\PropertyGroup.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Properties\StaticProperty.cpp">
+      <Filter>Include\Properties</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Items\ItemBase.cpp">
+      <Filter>Include\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Items\ItemFactory.cpp">
+      <Filter>Include\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Documents\Document.cpp">
+      <Filter>Include\Documents</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Documents\DocumentIO.cpp">
+      <Filter>Include\Documents</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Conversions\Converter.cpp">
+      <Filter>Include\Conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\Computables\Enum.cpp">
+      <Filter>Include\Computables</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\nxSurfs\Surf.cpp">
+      <Filter>Include\nxSurfs</Filter>
+    </ClCompile>
+    <ClCompile Include="Include\nxSurfs\SurfIOException.cpp">
+      <Filter>Include\nxSurfs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
